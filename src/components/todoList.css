@@ -1,0 +1,9 @@
+h5 {
+    padding: 1rem 0;
+}
+
+.todoList {
+    width: 30vw;
+    margin: auto;
+    border: 1px solid red;
+}

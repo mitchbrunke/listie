@@ -1,0 +1,30 @@
+
+.header {
+  padding-top: 5rem;
+  width: 30vw;
+  margin: auto;
+  
+}
+
+.kindaNav {
+  width: 100%;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;;
+  
+}
+
+input {
+  width: 100%;
+  border: none;
+  padding: 1rem 0;
+  
+}
+
+input::placeholder {
+  color: red;
+  padding-left: 1rem;
+}
+
+
