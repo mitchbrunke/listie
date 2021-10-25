@@ -5,11 +5,12 @@ const TodoList = ({ toDos, setToDos }) => {
   console.log(toDos);
   return (
     <div className="todoList">
-      {toDos.map((todo) => (
-        <div key={todo.id} className="single_todo">
-          <h5>{todo.text}</h5>
-        </div>
-      ))}
+      {toDos &&
+        toDos.map((todo) => (
+          <div key={todo.id} className="single_todo">
+            <h5>{todo.text}</h5>
+          </div>
+        ))}
     </div>
   );
 };

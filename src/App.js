@@ -10,16 +10,17 @@ import TodoList from "./components/todoList";
 
 function App() {
   const [toDos, setTodos] = useState([]);
+  const [newToDo, setNewToDo] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/items")
+    fetch("http://localhost:3004/items")
       .then((response) => response.json())
       .then((data) => setTodos(data));
   }, []);
 
   return (
     <div className="App">
-      <Header />
+      <Header newToDo={newToDo} setNewToDo={setNewToDo} />
       <TodoList toDos={toDos} setTodos={setTodos} />
     </div>
   );
