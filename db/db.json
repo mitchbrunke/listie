@@ -49,6 +49,16 @@
           "Web Development"
         ],
         "is_complete" : false
+      },
+      {
+        "id" : 6,
+        "text": "Just do it",
+        "created_at" : "Mon Aug 01 10:00:00 +0000 2015",
+        "Tags": [
+          "ES6",
+          "Web Development"
+        ],
+        "is_complete" : false
       }
     ]
   }

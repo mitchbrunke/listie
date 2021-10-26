@@ -1,8 +1,14 @@
+//reacc imports
+import React, { useEffect, useState } from "react";
+
 //styles
 import "./todoList.css";
 
-const TodoList = ({ toDos, setToDos }) => {
-  console.log(toDos);
+const TodoList = ({ toDos, newToDo, setTodos }) => {
+  useEffect(() => {
+    setTodos([...toDos, newToDo]);
+  }, [newToDo]);
+
   return (
     <div className="todoList">
       {toDos &&

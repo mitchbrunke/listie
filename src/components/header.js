@@ -7,9 +7,9 @@ import "./Header.css";
 //icons
 import LightModeIcon from "@mui/icons-material/LightMode";
 
-export default function Header({ newToDo, setNewToDo }) {
+export default function Header({ setNewToDo, toDos }) {
   //state for form input
-  const [input, setInput] = useState([]);
+  const [input, setInput] = useState("");
 
   //form handlers
   const inputHandler = (e) => {
@@ -19,13 +19,16 @@ export default function Header({ newToDo, setNewToDo }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setNewToDo([input]);
-    setInput("");
-  };
 
-  useEffect(() => {
-    console.log(newToDo);
-  }, [newToDo]);
+    const newItem = {
+      id: toDos.length + 1,
+      text: input,
+      is_complete: false,
+    };
+    setNewToDo(newItem);
+    setInput("");
+    console.log(input);
+  };
 
   return (
     <div className="header">
@@ -35,15 +38,13 @@ export default function Header({ newToDo, setNewToDo }) {
       </div>
       <div className="add">
         <form onSubmit={(e) => submitHandler(e)}>
-          <label htmlFor="addTodo">
-            <input
-              type="text"
-              id="addTodo"
-              placeholder="add a new to do.."
-              onChange={(e) => inputHandler(e)}
-              value={input}
-            />
-          </label>
+          <input
+            type="text"
+            id="addTodo"
+            placeholder="add a new to do.."
+            onChange={(e) => inputHandler(e)}
+            value={input}
+          />
         </form>
       </div>
     </div>
