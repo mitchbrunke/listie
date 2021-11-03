@@ -7,6 +7,10 @@ import "./Header.css";
 //icons
 import LightModeIcon from "@mui/icons-material/LightMode";
 
+//firebase
+import { db } from "../firebase/config";
+import { addDoc, collection } from "@firebase/firestore";
+
 export default function Header({ setNewToDo, toDos }) {
   //state for form input
   const [input, setInput] = useState("");
@@ -17,17 +21,19 @@ export default function Header({ setNewToDo, toDos }) {
     setInput(e.target.value);
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
-    const newItem = {
-      id: toDos.length + 1,
-      text: input,
-      is_complete: false,
-    };
-    setNewToDo(newItem);
-    setInput("");
-    console.log(input);
+    try {
+      await addDoc(collection(db, "todos"), {
+        text: input,
+        is_completed: false,
+        tags: "ES6",
+        created_at: new Date(),
+      }).then(setInput(""));
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (

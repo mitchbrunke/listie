@@ -1,6 +1,10 @@
 //react imports
 import React, { useEffect, useState } from "react";
 
+//firebase
+import { db } from "./firebase/config";
+import { collection, onSnapshot } from "firebase/firestore";
+
 //styles & icons
 import "./App.css";
 
@@ -12,18 +16,19 @@ function App() {
   const [toDos, setTodos] = useState([]);
   const [newToDo, setNewToDo] = useState([]);
 
-  // const addToDo = () => {
-  //   newToDo ? setTodos([...toDos, { newToDo }]) : console.log("no new todo");
-  // };
-
-  const getData = async () => {
-    await fetch("http://localhost:3004/items")
-      .then((response) => response.json())
-      .then((data) => setTodos(data));
-  };
-
   useEffect(() => {
-    getData();
+    let ref = collection(db, "todos");
+
+    const unsub = onSnapshot(ref, (snapshot) => {
+      let results = [];
+      snapshot.docs.forEach((doc) => {
+        results.push({ id: doc.id, ...doc.data() });
+      });
+      setTodos(results);
+      console.log(results);
+    });
+
+    return () => unsub;
   }, []);
 
   return (
